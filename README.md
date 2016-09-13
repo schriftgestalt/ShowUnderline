@@ -1,20 +1,22 @@
 # ShowUnderline
 
-A Plugin for [Glyphsapp](glyphsapp.com). It installs an icon into the bottom toolbar and draws a preview if the underline.
+A Plugin for [Glyphsapp](glyphsapp.com). It installs an icon into the bottom toolbar and draws a preview of the underline.
 
 ![Screenshot](Screenshot.png)
 
 
 ### Installation
 
-1. Download the complete ZIP file and unpack it, or clone the repository.
-2. Double click the .glyphsFilter file. Confirm the dialog that appears in Glyphs.
-3. Restart Glyphs.
-
+Use the Plugin Manager in the Window menu.
+or 
+- Download the complete ZIP file and unpack it, or clone the repository.
+- Double click the .glyphsFilter file. Confirm the dialog that appears in Glyphs.
+- Restart Glyphs.
+ 
 ### Usage Instructions
 
 1. Set the `underlineThickness` and `underlinePosition` in all masters.
-2. Click the `<u>U</u>` icon in the bottom bar.
+2. Click the <u>`U`</u> icon in the bottom bar.
 
 ### Requirements
 
