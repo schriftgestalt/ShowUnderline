@@ -10,18 +10,21 @@ class ShowUnderline(GeneralPlugin):
 		self.name = Glyphs.localize({'en': u'Show Underline', 'de': u'Unterstrichen'})
 	def start(self):
 		try:
-			Glyphs.addCallback(self.addUndelineButton, TABDIDOPEN)
-			Glyphs.addCallback(self.removeUndelineButton, TABWILLCLOSE)
-			Glyphs.addCallback(self.drawUndeline, DRAWBACKGROUND)
-			Glyphs.addCallback(self.drawUndeline, DRAWINACTIVE)
-			thisBundle = NSBundle.bundleForClass_(NSClassFromString("ShowUnderline"))
+			Glyphs.addCallback(self.addUnderlineButton, TABDIDOPEN)
+			Glyphs.addCallback(self.removeUnderlineButton, TABWILLCLOSE)
+			Glyphs.addCallback(self.drawUnderline, DRAWBACKGROUND)
+			Glyphs.addCallback(self.drawUnderline, DRAWINACTIVE)
+
+			# load icon from bundle
+			bundlePath = self.__file__()
+			thisBundle = NSBundle.bundleWithPath_(bundlePath[:bundlePath.rfind("Contents/Resources/")])
 			if thisBundle != None:
 				self.toolBarIcon = NSImage.alloc().initWithContentsOfFile_(thisBundle.pathForImageResource_("underLineTemplate.pdf"))
 				self.toolBarIcon.setTemplate_(True)
 		except:
 			print traceback.format_exc()
 	
-	def addUndelineButton(self, notification):
+	def addUnderlineButton(self, notification):
 		try:
 			Tab = notification.object()
 			if hasattr(Tab, "addViewToBottomToolbar_"):
@@ -41,7 +44,7 @@ class ShowUnderline(GeneralPlugin):
 		except:
 			NSLog(traceback.format_exc())
 	
-	def removeUndelineButton(self, notification):
+	def removeUnderlineButton(self, notification):
 		Tab = notification.object()
 		button = Tab.userData["underlineButton"]
 		if button != None:
@@ -49,7 +52,7 @@ class ShowUnderline(GeneralPlugin):
 			userDefaults = NSUserDefaultsController.sharedUserDefaultsController()
 			userDefaults.removeObserver_forKeyPath_(Tab.graphicView(), "values.GeorgSeifert_showUnderline")
 	
-	def drawUndeline(self, layer, options):
+	def drawUnderline(self, layer, options):
 		try:
 			if NSUserDefaults.standardUserDefaults().boolForKey_("GeorgSeifert_showUnderline"):
 				master = layer.associatedFontMaster()
@@ -63,3 +66,8 @@ class ShowUnderline(GeneralPlugin):
 					NSRectFill(rect)
 		except:
 			NSLog(traceback.format_exc())
+	
+	def __file__(self):
+		"""Please leave this method unchanged"""
+		return __file__
+	
