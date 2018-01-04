@@ -1,8 +1,8 @@
 # encoding: utf-8
 
+from GlyphsApp import *
 from GlyphsApp.plugins import *
-from Foundation import NSClassFromString, NSLog
-from AppKit import NSButton, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton
+from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton
 import traceback
 
 class ShowUnderline(GeneralPlugin):
