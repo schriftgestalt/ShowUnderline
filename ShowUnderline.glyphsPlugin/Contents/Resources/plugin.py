@@ -2,6 +2,7 @@
 
 from GlyphsApp import *
 from GlyphsApp.plugins import *
+from GlyphsApp.plugins import pathForResource
 from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton
 import traceback
 
@@ -16,11 +17,9 @@ class ShowUnderline(GeneralPlugin):
 			Glyphs.addCallback(self.drawUnderline, DRAWINACTIVE)
 
 			# load icon from bundle
-			bundlePath = self.__file__()
-			thisBundle = NSBundle.bundleWithPath_(bundlePath[:bundlePath.rfind("Contents/Resources/")])
-			if thisBundle != None:
-				self.toolBarIcon = NSImage.alloc().initWithContentsOfFile_(thisBundle.pathForImageResource_("underLineTemplate.pdf"))
-				self.toolBarIcon.setTemplate_(True)
+			iconPath = pathForResource("underLineTemplate", "pdf", __file__)
+			self.toolBarIcon = NSImage.alloc().initWithContentsOfFile_(iconPath)
+			self.toolBarIcon.setTemplate_(True)
 		except:
 			print traceback.format_exc()
 	
