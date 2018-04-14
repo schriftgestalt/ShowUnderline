@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/schriftgestalt/ShowUnderline/master/ShowUnderline.glyphsPlugin/Contents/Info.plist</string>
 	<key>productPageURL</key>
 	<string>https://github.com/schriftgestalt/ShowUnderline</string>
 	<key>productReleaseNotes</key>
-	<string>Proper loading of plugin bundle.</string>
+	<string>Fixed missing underline in Edit View.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, GeorgSeifert, 2016</string>
 	<key>NSMainNibFile</key>
