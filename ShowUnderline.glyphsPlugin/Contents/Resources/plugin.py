@@ -3,7 +3,7 @@
 from GlyphsApp import *
 from GlyphsApp.plugins import *
 from GlyphsApp.plugins import pathForResource
-from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton
+from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton, NSRectFill
 import traceback
 
 class ShowUnderline(GeneralPlugin):
