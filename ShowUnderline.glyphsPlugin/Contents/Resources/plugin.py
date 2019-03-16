@@ -3,7 +3,7 @@
 from GlyphsApp import *
 from GlyphsApp.plugins import *
 from GlyphsApp.plugins import pathForResource
-from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton, NSRectFill
+from AppKit import NSButton, NSUserDefaultsController, NSTexturedRoundedBezelStyle, NSImageOnly, NSImageScaleNone, NSToggleButton, NSRectFill, NSNotificationCenter
 import traceback
 
 class ShowUnderline(GeneralPlugin):
@@ -11,8 +11,10 @@ class ShowUnderline(GeneralPlugin):
 		self.name = Glyphs.localize({'en': u'Show Underline', 'de': u'Unterstrichen'})
 	def start(self):
 		try:
-			Glyphs.addCallback(self.addUnderlineButton, TABDIDOPEN)
-			Glyphs.addCallback(self.removeUnderlineButton, TABWILLCLOSE)
+			#Glyphs.addCallback(self.addUnderlineButton_, TABDIDOPEN)
+			#Glyphs.addCallback(self.removeUnderlineButton_, TABWILLCLOSE)
+			NSNotificationCenter.defaultCenter().addObserver_selector_name_object_(self, "addUnderlineButton:", TABDIDOPEN, objc.nil)
+			NSNotificationCenter.defaultCenter().addObserver_selector_name_object_(self, "removeUnderlineButton:", TABWILLCLOSE, objc.nil)
 			Glyphs.addCallback(self.drawUnderline, DRAWBACKGROUND)
 			Glyphs.addCallback(self.drawUnderline, DRAWINACTIVE)
 
@@ -21,9 +23,8 @@ class ShowUnderline(GeneralPlugin):
 			self.toolBarIcon = NSImage.alloc().initWithContentsOfFile_(iconPath)
 			self.toolBarIcon.setTemplate_(True)
 		except:
-			print traceback.format_exc()
-	
-	def addUnderlineButton(self, notification):
+			print (traceback.format_exc())
+	def addUnderlineButton_(self, notification):
 		try:
 			Tab = notification.object()
 			if hasattr(Tab, "addViewToBottomToolbar_"):
@@ -42,15 +43,14 @@ class ShowUnderline(GeneralPlugin):
 				userDefaults.addObserver_forKeyPath_options_context_(Tab.graphicView(), "values.GeorgSeifert_showUnderline", 0, 123)
 		except:
 			NSLog(traceback.format_exc())
-	
-	def removeUnderlineButton(self, notification):
+	def removeUnderlineButton_(self, notification):
 		Tab = notification.object()
 		button = Tab.userData["underlineButton"]
 		if button != None:
 			button.unbind_("value")
 			userDefaults = NSUserDefaultsController.sharedUserDefaultsController()
 			userDefaults.removeObserver_forKeyPath_(Tab.graphicView(), "values.GeorgSeifert_showUnderline")
-	
+	@objc.python_method
 	def drawUnderline(self, layer, options):
 		try:
 			if NSUserDefaults.standardUserDefaults().boolForKey_("GeorgSeifert_showUnderline"):
