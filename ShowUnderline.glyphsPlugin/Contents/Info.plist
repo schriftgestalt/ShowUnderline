@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleDisplayName</key>
-	<string>ShowUnderline</string>
+	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>plugin</string>
 	<key>CFBundleIdentifier</key>
@@ -14,12 +12,10 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>ShowUnderline</string>
-	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
-	<key>CFBundleVersion</key>
-	<string>4</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4</string>
+	<string>0.5</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/schriftgestalt/ShowUnderline/master/ShowUnderline.glyphsPlugin/Contents/Info.plist</string>
 	<key>productPageURL</key>
@@ -30,9 +26,5 @@
 	<string>Copyright, GeorgSeifert, 2016</string>
 	<key>NSPrincipalClass</key>
 	<string>ShowUnderline</string>
-	<key>PyMainFileNames</key>
-	<array>
-		<string>../MacOS/main.py</string>
-	</array>
 </dict>
 </plist>
